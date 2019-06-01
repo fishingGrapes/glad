@@ -21,9 +21,9 @@ project "glad"
     
     filter "system:windows"
         systemversion "latest"
-        staticruntime "off"
+        staticruntime "on"
         
-      
+   
     filter { "system:windows", "configurations:Release" }
         runtime "Release"
         optimize "on"
