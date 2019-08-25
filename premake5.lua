@@ -1,9 +1,10 @@
-project "glad"
+project "GLAD"
     kind "StaticLib"
     language "C"
-    
-    targetdir ("../../../bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("../../../bin-int/" .. outputdir .. "/%{prj.name}")
+    staticruntime "on"
+
+    targetdir ("binaries/" .. outputdir .. "/%{prj.name}")
+    objdir ("binaries/intermediates/" .. outputdir .. "/%{prj.name}")
 
 
     --Common Files
@@ -21,10 +22,16 @@ project "glad"
     
     filter "system:windows"
         systemversion "latest"
-        staticruntime "on"
         
-   
-    filter { "system:windows", "configurations:Release" }
-        runtime "Release"
-        optimize "on"
+	    filter "configurations:Debug"
+	        runtime "Debug"
+	        symbols "on"
+
+	    filter  "configurations:Release" 
+	        runtime "Release"
+	        optimize "on"
+        
+	    filter "configurations:Dist"
+	        runtime "Release"
+	        optimize "on"
 
